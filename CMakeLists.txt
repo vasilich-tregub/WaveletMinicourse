@@ -14,3 +14,4 @@ project ("wavelets")
 # Include sub-projects.
 add_subdirectory ("haar")
 add_subdirectory ("legall53")
+add_subdirectory ("VanishingMoments")
