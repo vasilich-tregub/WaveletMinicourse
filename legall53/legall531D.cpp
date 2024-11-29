@@ -1,4 +1,4 @@
-﻿// HAAR-interleaved.cpp : Defines the entry point for the application.
+﻿// Le Gall 5/3 1D code.cpp : Defines the entry point for the application.
 //
 
 #include <iostream>
