@@ -1,5 +1,7 @@
 ﻿// cdf 9/7.cpp : Defines the entry point for the application.
-// based off the code snippet from https://gist.github.com/i-e-b/bb72fed460418f7c7ccb221d4b1da2b1
+// this exercise examines vanishing moments of CDF 9/7 wavelet
+// the wavelet code is based off 
+// the code snippet from https://gist.github.com/i-e-b/bb72fed460418f7c7ccb221d4b1da2b1
 // credited, in turn, to '2006 - Gregoire Pau - gregoire.pau@ebi.ac.uk'
 // I added a decomposition level to the parameter list and omitted decomposition packing/unpacking
 

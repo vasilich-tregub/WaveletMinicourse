@@ -1,5 +1,10 @@
-﻿// HAAR-interleaved.cpp : Defines the entry point for the application.
-//
+﻿// legall53moments.cpp : Defines the entry point for the application.
+// this exercise examines vanishing moments of Le Gall 5/3 wavelet
+// the wavelet code is based off 
+// the dwt code (dwt.h, dwt.c) of ISO 21122 - 5 ed.2 reference software
+// credited, in turn, to Fraunhofer IIS and intopix.com
+// I added comments emphasizing the use of lifting scheme implementation
+// and perfect (bit-precise) reconstruction with lifting scheme
 
 #include <iostream>
 #include <vector>
