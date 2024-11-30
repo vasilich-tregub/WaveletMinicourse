@@ -68,8 +68,8 @@ void fwt97(std::vector<double>& im, const int level) {
     // Scale
     a = 1 / 1.149604398;
     for (i = 0; i < end; i++) {
-        if (i % (2 * inc)) im[i] *= a;
-        else im[i] /= a;
+        if (i % (2 * inc)) im[i] /= a;
+        else im[i] *= a;
     }
 
 }
@@ -91,8 +91,8 @@ void iwt97(std::vector<double>& im, const int level) {
     // Undo scale
     a = 1.149604398;
     for (i = 0; i < end; i++) {
-        if (i % (2 * inc)) im[i] *= a;
-        else im[i] /= a;
+        if (i % (2 * inc)) im[i] /= a;
+        else im[i] *= a;
     }
 
     // Undo update 2
