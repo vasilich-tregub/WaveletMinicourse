@@ -1,7 +1,8 @@
 ﻿// cdf 9/7.cpp : Defines the entry point for the application.
 // based off the code snippet from https://gist.github.com/i-e-b/bb72fed460418f7c7ccb221d4b1da2b1
 // credited, in turn, to '2006 - Gregoire Pau - gregoire.pau@ebi.ac.uk'
-// I added a decomposition level to the parameter list and omitted decomposition packing/unpacking
+// I added a decomposition level to the parameter list, omitted decomposition packing/unpacking
+// and corrected the scaling step which should be a 'leapfrog' summation
 
 /**
  *  Fast discrete biorthogonal CDF 9/7 wavelet forward and inverse transform (lifting implementation)
@@ -64,7 +65,7 @@ void fwt97(std::vector<double>& im, const int level) {
 
     // Scale
     a = 1 / 1.149604398;
-    for (i = 0; i < end; i++) {
+    for (i = 0; i < end; i += inc) {
         if (i % (2 * inc)) im[i] /= a;
         else im[i] *= a;
     }
@@ -87,7 +88,7 @@ void iwt97(std::vector<double>& im, const int level) {
 
     // Undo scale
     a = 1.149604398;
-    for (i = 0; i < end; i++) {
+    for (i = 0; i < end; i += inc) {
         if (i % (2 * inc)) im[i] /= a;
         else im[i] *= a;
     }

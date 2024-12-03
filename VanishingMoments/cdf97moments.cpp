@@ -3,7 +3,8 @@
 // the wavelet code is based off 
 // the code snippet from https://gist.github.com/i-e-b/bb72fed460418f7c7ccb221d4b1da2b1
 // credited, in turn, to '2006 - Gregoire Pau - gregoire.pau@ebi.ac.uk'
-// I added a decomposition level to the parameter list and omitted decomposition packing/unpacking
+// I added a decomposition level to the parameter list, omitted decomposition packing/unpacking
+// and corrected the scaling step which should be a 'leapfrog' summation
 
 /**
  *  Fast discrete biorthogonal CDF 9/7 wavelet forward and inverse transform (lifting implementation)
@@ -67,7 +68,7 @@ void fwt97(std::vector<double>& im, const int level) {
 
     // Scale
     a = 1 / 1.149604398;
-    for (i = 0; i < end; i++) {
+    for (i = 0; i < end; i += inc) {
         if (i % (2 * inc)) im[i] /= a;
         else im[i] *= a;
     }
@@ -90,7 +91,7 @@ void iwt97(std::vector<double>& im, const int level) {
 
     // Undo scale
     a = 1.149604398;
-    for (i = 0; i < end; i++) {
+    for (i = 0; i < end; i += inc) {
         if (i % (2 * inc)) im[i] /= a;
         else im[i] *= a;
     }
@@ -131,8 +132,8 @@ void iwt97(std::vector<double>& im, const int level) {
 }
 
 int main() {
-    uint32_t len = 64;
-    uint32_t maxval = 1024;
+    int32_t len = 64;
+    int32_t maxval = 1024;
     std::vector<double> cst(len, maxval);
     std::vector<double> lin(len);
     for (int i = 0; i < len; ++i)
@@ -154,6 +155,8 @@ int main() {
     fwt97(lin, 0);
     fwt97(sqt, 0);
     fwt97(cub, 0);
+    fwt97(sqt, 1);
+    fwt97(cub, 1);
     for (int i = 0; i < len; ++i)
     {
         cst[i] /= 256 * 16;
@@ -171,16 +174,17 @@ int main() {
     {
         std::cout << lin[i] << "\n";
     }
-    std::cout << "\nsquare polynomial details:\n";
-    for (int i = 1; i < len; ++++i)
+    std::cout << "\nsquare fwt:\n";
+    for (int i = 0; i < len; ++i)
     {
         std::cout << sqt[i] << "\n";
     }
-    std::cout << "\ncubic polynomial details:\n";
-    for (int i = 1; i < len; ++++i)
+    std::cout << "\ncubic fwt:\n";
+    for (int i = 0; i < len; ++i)
     {
         std::cout << cub[i] << "\n";
     }
     std::cout << std::endl;
+
     return 0;
 }

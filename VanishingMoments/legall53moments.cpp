@@ -83,8 +83,8 @@ void dwt_forward(std::vector<int32_t>& im, const int level)
 
 int main()
 {
-	uint32_t len = 32;
-	uint32_t maxval = 1024;
+	int32_t len = 32;
+	int32_t maxval = 1024;
 	std::vector<int32_t> cst(len, maxval);
 	std::vector<int32_t> lin(len);
 	for (int i = 0; i < len; ++i)
