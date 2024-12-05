@@ -10,7 +10,7 @@ int main() {
     int i;
 
     // Makes a polinomial signal
-    for (i = 0; i < n; i++) im97[i] = im53[i] = 5 + i + 0.4 * i * i -0.02 * i * i * i;
+    for (i = 0; i < n; i++) im97[i] = im53[i] = 5 + i + 0.4 * i * i;// -0.02 * i * i * i;
 
     // Prints original signal im
     printf("Original signal:\n");
@@ -32,14 +32,17 @@ int main() {
     for (i = 0; i < n; i++) printf("wc[%d] = %f ; %f\n", i, im53[i], im97[i]);
     printf("\n");
 
-    /*fwt97(im, 2);
-    printf("level 2 Wavelets decomposition:\n");
-    for (i = 0; i < n; i++) printf("wc[%d]=%f\n", i, im[i]);
-    printf("\n");*/
+    fwt53(im53, 2);
+    fwt97(im97, 2);
+    printf("level 2 Wavelets coefficients:\n");
+    for (i = 0; i < n; i++) printf("wc[%d] = %f ; %f\n", i, im53[i], im97[i]);
+    printf("\n");
 
     // Do the inverse 9/7 transform
+    iwt53(im53, 2);
     iwt53(im53, 1);
     iwt53(im53, 0);
+    iwt97(im97, 2);
     iwt97(im97, 1);
     iwt97(im97, 0);
 

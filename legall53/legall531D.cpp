@@ -25,9 +25,9 @@ void dwt_inverse(std::vector<int32_t>& im, const int level)
 	}
 	
 	// high pass filter, {-1./8, 1./8, 6./8, 1./8 -1./8}
-	// successive convolutions with {-1./4, 1./4, -1./4} for even pixels
+	// successive convolutions with {-1./4, 1., -1./4} for even pixels
 	// and {1./2, 1., 1./2} for even pixels
-	// for im[n] result in -im[n-2]/8 + im[n-1]/8 + 6*im[n]/8 + im[n+1]/8 - im[n+2]/8
+	// for im[n] result is -im[n-2]/8 + im[n-1]/8 + 6*im[n]/8 + im[n+1]/8 - im[n+2]/8
 	i = inc;
 	for (; i < end - inc; i += 2 * inc)
 	{
@@ -61,7 +61,7 @@ void dwt_forward(std::vector<int32_t>& im, const int level)
 	// low pass filter, 
 	// successive convolutions with {-1./2, 1., -1./2} for odd pixels
 	// and {1./4, 1., 1./4} for even pixels
-	// for im[n] result in -im[n-2]/8 + im[n-1]/4 + 6*im[n]/8 + im[n+1]/4 - im[n+2]/8
+	// for im[n] result is -im[n-2]/8 + im[n-1]/4 + 6*im[n]/8 + im[n+1]/4 - im[n+2]/8
 	// i.e., {-1./8, 2./8, 6./8, 2./8, -1./8}
 	im[i] += (im[inc] + 1) >> 1;
 	i += 2 * inc;
@@ -80,18 +80,6 @@ int main()
 {
 	std::vector<int32_t> im{ 7, 10, 8, 6, 4, 1, 3, 7 };
 	size_t len = im.size();
-	/*int k = 1;
-	while (k < len)
-	{
-		for (int i = 0; i < len; i += 2 * k)
-		{
-			double even = im[i];
-			double odd = im[i + k];
-			im[i] = (even + odd) / 2;
-			im[i + k] = (even - odd) / 2;
-		}
-		k *= 2;
-	}*/
 
 	for (int i = 0; i < len; ++i)
 		im[i] *= 256 * 16;
