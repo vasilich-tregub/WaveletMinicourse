@@ -14,6 +14,7 @@ project ("wavelets")
 # Include sub-projects.
 add_subdirectory ("haar")
 add_subdirectory ("legall53")
+add_subdirectory ("legall53bandpass")
 add_subdirectory ("cdf97")
 add_subdirectory ("VanishingMoments")
 add_subdirectory ("LGTvsCDF")
