@@ -12,7 +12,7 @@ void dwt_inverse(std::vector<int32_t>& im, const int level)
 	int end = (int)im.size();
 	assert(inc < end && "stepping outside source image");
 
-	// low pass filter, {-1./4, 1./4, -1./4}
+	// low pass filter, {-1./4, 1., -1./4}
 	int i = 0;
 	im[i] -= (im[inc] + 1) >> 1;
 	i += 2 * inc;
@@ -27,7 +27,7 @@ void dwt_inverse(std::vector<int32_t>& im, const int level)
 	
 	// high pass filter, {-1./8, 1./8, 6./8, 1./8 -1./8}
 	// successive convolutions with {-1./4, 1., -1./4} for even pixels
-	// and {1./2, 1., 1./2} for even pixels
+	// and {1./2, 1., 1./2} for odd pixels
 	// for im[n] result is -im[n-2]/8 + im[n-1]/8 + 6*im[n]/8 + im[n+1]/8 - im[n+2]/8
 	i = inc;
 	for (; i < end - inc; i += 2 * inc)
@@ -79,39 +79,44 @@ void dwt_forward(std::vector<int32_t>& im, const int level)
 
 int main()
 {
-	std::vector<int32_t> im{ 7, 10, 8, 6, 4, 1, 3, 7, 15 };
+	std::vector<int32_t> im{ 7, 10, 8, 6, 4, 1, 3, 7, 15, 11 };
 	size_t len = im.size();
 
 	for (int i = 0; i < len; ++i)
-		im[i] *= 256 * 16;
-
-	for (int i = 0; i < len; ++i)
-		std::cout << std::setw(6) << im[i] / 256.0 / 16 << "; ";
+		std::cout << std::setw(6) << im[i] << "; ";
 	std::cout << std::endl;
 	dwt_forward(im, 0);
 	for (int i = 0; i < len; ++i)
-		std::cout << std::setw(6) << im[i] / 256.0 / 16 << "; ";
+		std::cout << std::setw(6) << im[i] << "; ";
 	std::cout << std::endl;
 	dwt_forward(im, 1);
 	for (int i = 0; i < len; ++i)
-		std::cout << std::setw(6) << im[i] / 256.0 / 16 << "; ";
+		std::cout << std::setw(6) << im[i] << "; ";
 	std::cout << std::endl;
 	dwt_forward(im, 2);
 	for (int i = 0; i < len; ++i)
-		std::cout << std::setw(6) << im[i] / 256.0 / 16 << "; ";
+		std::cout << std::setw(6) << im[i] << "; ";
+	std::cout << std::endl;
+	dwt_forward(im, 3);
+	for (int i = 0; i < len; ++i)
+		std::cout << std::setw(6) << im[i] << "; ";
 	std::cout << std::endl;
 	std::cout << "Inverse:\n";
+	dwt_inverse(im, 3);
+	for (int i = 0; i < len; ++i)
+		std::cout << std::setw(6) << im[i] << "; ";
+	std::cout << std::endl;
 	dwt_inverse(im, 2);
 	for (int i = 0; i < len; ++i)
-		std::cout << std::setw(6) << im[i] / 256.0 / 16 << "; ";
+		std::cout << std::setw(6) << im[i] << "; ";
 	std::cout << std::endl;
 	dwt_inverse(im, 1);
 	for (int i = 0; i < len; ++i)
-		std::cout << std::setw(6) << im[i] / 256.0 / 16 << "; ";
+		std::cout << std::setw(6) << im[i] << "; ";
 	std::cout << std::endl;
 	dwt_inverse(im, 0);
 	for (int i = 0; i < len; ++i)
-		std::cout << std::setw(6) << im[i] / 256.0 / 16 << "; ";
+		std::cout << std::setw(6) << im[i] << "; ";
 	std::cout << std::endl;
 
 	/*std::vector<double> decomp(len);
