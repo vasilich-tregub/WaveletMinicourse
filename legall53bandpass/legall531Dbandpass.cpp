@@ -12,7 +12,7 @@ void dwt_inverse(std::vector<int32_t>& im, const int level)
 	int end = (int)im.size();
 	assert(inc < end && "stepping outside source image");
 
-	// low pass filter, {-1./4, 1./4, -1./4}
+	// low pass filter, {-1./4, 1., -1./4}
 	int i = 0;
 	im[i] -= (im[inc] + 1) >> 1;
 	i += 2 * inc;
