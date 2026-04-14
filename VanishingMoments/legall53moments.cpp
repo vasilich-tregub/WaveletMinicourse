@@ -1,4 +1,9 @@
-﻿// legall53moments.cpp : Defines the entry point for the application.
+﻿/* TERMS OF USE
+ * This source code is subject to the terms of the MIT License.
+ * Copyright(c) 2026 Vladimir Vasilich Tregub
+*/
+
+// legall53moments.cpp : Defines the entry point for the application.
 // this exercise examines vanishing moments of Le Gall 5/3 wavelet
 // the wavelet code is based off 
 // the dwt code (dwt.h, dwt.c) of ISO 21122 - 5 ed.2 reference software

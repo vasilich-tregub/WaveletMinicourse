@@ -1,6 +1,7 @@
-﻿// Le Gall 5/3 1D code.cpp : Defines the entry point for the application.
-//
-
+﻿/* TERMS OF USE
+ * This source code is subject to the terms of the MIT License.
+ * Copyright(c) 2026 Vladimir Vasilich Tregub
+*/
 #include <iostream>
 #include <iomanip>
 #include <vector>
