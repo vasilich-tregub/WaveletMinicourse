@@ -21,7 +21,7 @@ void dwt_inverse(std::vector<int32_t>& im, const int level)
 	int end = (int)im.size();
 	assert(inc < end && "stepping outside source image");
 
-	// low pass filter, {-1./4, 1./4, -1./4}
+	// low pass filter, {-1./4, 1., -1./4}
 	int i = 0;
 	im[i] -= (im[inc] + 1) >> 1;
 	i += 2 * inc;
@@ -35,7 +35,7 @@ void dwt_inverse(std::vector<int32_t>& im, const int level)
 	}
 	
 	// high pass filter, {-1./8, 1./8, 6./8, 1./8 -1./8}
-	// successive convolutions with {-1./4, 1./4, -1./4} for even pixels
+	// successive convolutions with {-1./4, 1., -1./4} for even pixels
 	// and {1./2, 1., 1./2} for even pixels
 	// for im[n] result is -im[n-2]/8 + im[n-1]/8 + 6*im[n]/8 + im[n+1]/8 - im[n+2]/8
 	i = inc;
