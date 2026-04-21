@@ -3,10 +3,12 @@
 #
 
 # Add source to this project's executable.
+add_executable (haar-biorthogonal "haar-biorthogonal.cpp" )
 add_executable (haar-interleaved "haar-interleaved.cpp" )
 add_executable (haar-pyramid "haar-pyramid.cpp" )
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
+  set_property(TARGET haar-biorthogonal PROPERTY CXX_STANDARD 20)
   set_property(TARGET haar-interleaved PROPERTY CXX_STANDARD 20)
   set_property(TARGET haar-pyramid PROPERTY CXX_STANDARD 20)
 endif()
