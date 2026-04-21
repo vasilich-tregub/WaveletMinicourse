@@ -15,7 +15,7 @@ int main()
 	std::cout << "\n";
 	size_t len = im.size();
 	std::vector<std::vector<int>> decomp;
-	std::cout << "Direct biorthogonal Haar transform:" << "\n";
+	std::cout << "Direct integer-to-integer Haar transform:" << "\n";
 	std::vector<int> a(im);
 	int level = 1;
 	while (len > 1)
@@ -46,7 +46,7 @@ int main()
 		std::cout << '#' << i << ":" << a[i] << "; ";
 	}
 	std::cout << "\n" << "\n";
-	std::cout << "Inverse biorthogonal Haar transform:" << "\n";
+	std::cout << "Inverse integer-to-integer Haar transform:" << "\n";
 	std::vector<int> recovered(im.size());
 	--level;
 	while (level > 0)
@@ -59,7 +59,7 @@ int main()
 			int approx = a[i];
 			int coeff = a[i + len];
 			recovered_coeffs[2 * i] = (approx + coeff) / 2;			// see lines 29, 30. 'approx' and 'coeff' values
-			recovered_coeffs[2 * i + 1] = (approx - coeff) / 2;		// of the same decomp level have identical parity.
+			recovered_coeffs[2 * i + 1] = (approx - coeff) / 2;		// at the same decomp level have identical parity.
 		}
 		std::cout << "level " << level << "(recovered values):\n";
 		for (int i = 0; i < 2 * len; ++i)

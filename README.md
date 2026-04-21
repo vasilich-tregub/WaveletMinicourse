@@ -2,8 +2,8 @@
 
 A minicourse to help CPU and FPGA programmers understand, use and implement DWT for JPEG XS codecs.
 
-* In the executable 'haar-biorthogonal', the Haar wavelet transform operates over a ring of integers: 
-see comments in lines 29-30 and 61-62 of 'haar-biorthogonal.cpp' for explanation.
+* In the executable 'haar-int2int', the Haar wavelet transform operates over a ring of integers: 
+see comments in lines 29-30 and 61-62 of 'haar-int2int.cpp' for explanation.
 
 * A pair of direct and inverse Le Gall 5/3 transforms as implemented in the 'legall53' folder (and 
 similar ones throughout this project) guarantees a lossless coding over a ring of integers. The 
